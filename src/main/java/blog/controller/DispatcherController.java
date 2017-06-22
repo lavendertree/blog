@@ -30,17 +30,11 @@ public class DispatcherController {
     @Autowired
     TagService tagService;
 
-//    @GetMapping("/register")
-//    public String register(Model model){
-//        model.addAttribute("page_register",true);
-//        return "register";
-//    }
-
     @GetMapping("/index")
     public String showAllArticle(Model model){
-        model.addAttribute("bloglist",articleService.showAllArticle());
+//        model.addAttribute("bloglist",articleService.showAllArticle());
         model.addAttribute("page_index",true);
-        return "index";
+        return "/admin/index";
     }
 
     @GetMapping(value = "/login.html")
