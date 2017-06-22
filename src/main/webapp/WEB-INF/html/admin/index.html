@@ -17,6 +17,46 @@
     <link rel="stylesheet" href="../../../static/admin/css/admin.css">
     <link rel="stylesheet" href="../../../static/admin/css/app.css">
     <script src="../../../static/admin/js/echarts.min.js"></script>
+    <script>
+        function update() {
+            var name = $("#name").val();
+            var sex = $("#sex").val();
+            var interest = $("#interest").val();
+            var eMail = $("#eMail").val();
+            var phone = $("#phone").val();
+            var qq = $("#qq").val();
+            var country = $("#country").val();
+            var province = $("#province").val();
+            var city = $("#city").val();
+            var introduce=$("#introduce").val();
+
+            var userInfo = {
+                "name": name,
+                "sex": sex,
+                "interest": interest,
+                "eMail": eMail,
+                "phone": phone,
+                "qq": qq,
+                "country": country,
+                "province": province,
+                "city": city,
+                "introduce":introduce
+            }
+            $.ajax({
+                url: "/admin/index",
+                type:"POST",
+                timeout:5000,
+                data: userInfo,
+                success: function (result) {
+                    window.location.reload(true);
+                },
+                error:function (err) {
+                    alert("网络错误！"+err.toString());
+                }
+            });
+        }
+    </script>
+
 </head>
 
 <body data-type="index">
@@ -280,7 +320,7 @@
                                     <div class="am-form-group">
                                         <label for="name" class="am-u-sm-3 am-form-label">姓名</label>
                                         <div class="am-u-sm-9">
-                                            <input type="text" id="name" placeholder="姓名">
+                                            <input type="text" id="name" th:value="${userInfo.name}" placeholder="姓名">
                                             <small>输入你的名字，让我们记住你。</small>
                                         </div>
                                     </div>
@@ -288,78 +328,72 @@
                                     <div class="am-form-group">
                                         <label for="sex" class="am-u-sm-3 am-form-label">性别</label>
                                         <div class="am-u-sm-9">
-                                            <input type="text" id="sex" placeholder="输入你的性别">
+                                            <input type="text" id="sex" th:value="${userInfo.sex}" placeholder="输入你的性别">
                                         </div>
                                     </div>
 
-                                    <div class="am-form-group">
-                                        <label for="birthday" class="am-u-sm-3 am-form-label">生日</label>
-                                        <div class="am-u-sm-9">
-                                            <input type="datetime" id="birthday" placeholder="输入你的生日">
-                                        </div>
-                                    </div>
 
                                     <div class="am-form-group">
                                         <label for="interest" class="am-u-sm-3 am-form-label">兴趣</label>
                                         <div class="am-u-sm-9">
-                                            <input type="text" id="interest" placeholder="输入你的兴趣爱好">
+                                            <input type="text" id="interest" th:value="${userInfo.interest}" placeholder="输入你的兴趣爱好">
                                         </div>
                                     </div>
 
                                     <div class="am-form-group">
                                         <label for="eMail" class="am-u-sm-3 am-form-label">电子邮件</label>
                                         <div class="am-u-sm-9">
-                                            <input type="email" id="eMail" placeholder="输入你的电子邮件">
+                                            <input type="email" id="eMail" th:value="${userInfo.eMail}" placeholder="输入你的电子邮件">
                                             <small>邮箱你懂得...</small>
                                         </div>
                                     </div>
 
                                     <div class="am-form-group">
-                                        <label for="user-phone" class="am-u-sm-3 am-form-label">电话</label>
+                                        <label for="phone" class="am-u-sm-3 am-form-label">电话</label>
                                         <div class="am-u-sm-9">
-                                            <input type="tel" id="user-phone" placeholder="输入你的电话号码">
+                                            <input type="tel" id="phone" th:value="${userInfo.phone}" placeholder="输入你的电话号码">
                                         </div>
                                     </div>
 
                                     <div class="am-form-group">
-                                        <label for="user-QQ" class="am-u-sm-3 am-form-label">QQ</label>
+                                        <label for="qq" class="am-u-sm-3 am-form-label">QQ</label>
                                         <div class="am-u-sm-9">
-                                            <input type="text" pattern="[0-9]*" id="user-QQ" placeholder="输入你的QQ号码">
+                                            <input type="text" pattern="[0-9]*" id="qq" th:value="${userInfo.qq}" placeholder="输入你的QQ号码">
                                         </div>
                                     </div>
 
                                     <div class="am-form-group">
                                         <label for="country" class="am-u-sm-3 am-form-label">国家</label>
                                         <div class="am-u-sm-9">
-                                            <input type="text" id="country" placeholder="输入你的祖国">
+                                            <input type="text" id="country" th:value="${userInfo.country}" placeholder="输入你的祖国">
                                         </div>
                                     </div>
 
                                     <div class="am-form-group">
                                         <label for="province" class="am-u-sm-3 am-form-label">省份</label>
                                         <div class="am-u-sm-9">
-                                            <input type="text" id="province" placeholder="输入你所属的省份">
+                                            <input type="text" id="province" th:value="${userInfo.province}" placeholder="输入你所属的省份">
                                         </div>
                                     </div>
 
                                     <div class="am-form-group">
                                         <label for="city" class="am-u-sm-3 am-form-label">城市</label>
                                         <div class="am-u-sm-9">
-                                            <input type="text" id="city" placeholder="输入你所属的城市">
+                                            <input type="text" id="city"  th:value="${userInfo.city}" placeholder="输入你所属的城市">
                                         </div>
                                     </div>
 
                                     <div class="am-form-group">
-                                        <label for="user-intro" class="am-u-sm-3 am-form-label">简介</label>
+                                        <label for="introduce" class="am-u-sm-3 am-form-label">简介</label>
                                         <div class="am-u-sm-9">
-                                            <textarea class="" rows="5" id="user-intro" placeholder="输入个人简介"></textarea>
+                                            <textarea class="" rows="5" id="introduce" th:field="${userInfo.introduce}" placeholder="输入个人简介"></textarea>
                                             <small>250字以内写出你的一生...</small>
                                         </div>
                                     </div>
 
                                     <div class="am-form-group">
                                         <div class="am-u-sm-9 am-u-sm-push-3">
-                                            <button type="button" class="am-btn am-btn-primary">保存修改</button>
+                                            <button onclick="update()" class="am-btn am-btn-primary">保存修改</button>
                                         </div>
                                     </div>
                                 </form>

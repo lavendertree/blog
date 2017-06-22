@@ -29,7 +29,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers("/me/**").authenticated()
                 .anyRequest().permitAll()
                 .and().formLogin()
-                .loginPage("/login.html")
+                .loginPage("/admin/login.html")
                 .loginProcessingUrl("/login")
                 .failureHandler(new AjaxLoginFailureHandler())
                 .successHandler(new AjaxLoginSuccessHandler())

@@ -15,16 +15,16 @@ public class MeController {
     @Autowired
     UserService userService;
 
-    @PostMapping("/register")
-    boolean addUser(String username,String password){
-        if (username.equals("")||password.equals(""))
-             return false;
-        else{
-            return userService.addUser(username, password);
-        }
-    }
+//    @PostMapping("/register")
+//    boolean addUser(String username,String password){
+//        if (username.equals("")||password.equals(""))
+//             return false;
+//        else{
+//            return userService.addUser(username, password);
+//        }
+//    }
 
-    @PostMapping("/me")
+    @PostMapping("/admin/index")
     void updateInfo(UserInfo user){
         userService.updateUserInfo(user);
     }
