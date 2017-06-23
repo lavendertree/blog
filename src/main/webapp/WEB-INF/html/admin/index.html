@@ -189,7 +189,6 @@
 
     <div class="tpl-page-container tpl-page-header-fixed">
 
-
         <div th:fragment="left-nav">
             <div class="tpl-left-nav tpl-left-nav-hover">
                 <div class="tpl-left-nav-title">
@@ -197,22 +196,61 @@
                 </div>
                 <div class="tpl-left-nav-list">
                     <ul class="tpl-left-nav-menu">
+                        <!--个人信息，博客管理，评论管理，文件管理，类别管理，修改密码-->
                         <li class="tpl-left-nav-item">
                             <a href="index.html" class="nav-link active">
                                 <i class="am-icon-user"></i>
                                 <span>个人信息</span>
                             </a>
                         </li>
+
                         <li class="tpl-left-nav-item">
-                            <a href="chart.html" class="nav-link tpl-left-nav-link-list">
-                                <i class="am-icon-bar-chart"></i>
-                                <span>数据表</span>
+                            <a href="javascript:;" class="nav-link tpl-left-nav-link-list">
+                                <i class="am-icon-clone"></i>
+                                <span>博客列表</span>
+                                <i class="am-icon-angle-right tpl-left-nav-more-ico am-fr am-margin-right"></i>
+                            </a>
+                            <ul class="tpl-left-nav-sub-menu">
+                                <li>
+                                    <a href="blog-list.html">
+                                        <i class="am-icon-tasks"></i>
+                                        <span>博客管理</span>
+                                        <i class="tpl-left-nav-content tpl-badge-success">
+                                            18
+                                        </i>
+                                    </a>
+
+                                    <a href="table-images-list.html">
+                                        <i class="am-icon-pencil-square-o"></i>
+                                        <span>写博客</span>
+
+                                    </a>
+
+                                </li>
+                            </ul>
+                        </li>
+
+                        <li class="tpl-left-nav-item">
+                            <a href="comment-list.html" class="nav-link tpl-left-nav-link-list">
+                                <i class="am-icon-commenting-o"></i>
+                                <span>评论管理</span>
                                 <i class="tpl-left-nav-content tpl-badge-danger">
                                     12
                                 </i>
                             </a>
                         </li>
-
+                        <li class="tpl-left-nav-item">
+                            <a href="index.html" class="nav-link ">
+                                <i class="am-icon-folder-open-o"></i>
+                                <span>文件管理</span>
+                            </a>
+                        </li>
+                        <li class="tpl-left-nav-item">
+                            <a href="index.html" class="nav-link ">
+                                <i class="am-icon-sitemap"></i>
+                                <span>类别管理</span>
+                            </a>
+                        </li>
                         <li class="tpl-left-nav-item">
                             <a href="javascript:;" class="nav-link tpl-left-nav-link-list">
                                 <i class="am-icon-table"></i>
@@ -221,7 +259,7 @@
                             </a>
                             <ul class="tpl-left-nav-sub-menu">
                                 <li>
-                                    <a href="table-font-list.html">
+                                    <a href="blog-list.html">
                                         <i class="am-icon-angle-right"></i>
                                         <span>文字表格</span>
                                         <i class="am-icon-star tpl-left-nav-content-ico am-fr am-margin-right"></i>
@@ -233,6 +271,7 @@
                                         <i class="tpl-left-nav-content tpl-badge-success">
                                             18
                                         </i>
+                                    </a>
 
                                         <a href="form-news.html">
                                             <i class="am-icon-angle-right"></i>
@@ -240,6 +279,7 @@
                                             <i class="tpl-left-nav-content tpl-badge-primary">
                                                 5
                                             </i>
+                                        </a>
 
 
                                             <a href="form-news-list.html">
@@ -247,8 +287,7 @@
                                                 <span>文字列表</span>
 
                                             </a>
-                                        </a>
-                                    </a>
+
                                 </li>
                             </ul>
                         </li>
@@ -266,6 +305,7 @@
                                         <span>Amaze UI 表单</span>
                                         <i class="am-icon-star tpl-left-nav-content-ico am-fr am-margin-right"></i>
                                     </a>
+
 
                                     <a href="form-line.html">
                                         <i class="am-icon-angle-right"></i>
@@ -314,7 +354,6 @@
 
                         <div class="am-g tpl-amazeui-form">
 
-
                             <div class="am-u-sm-12 am-u-md-9">
                                 <form class="am-form am-form-horizontal">
                                     <div class="am-form-group">
@@ -331,7 +370,6 @@
                                             <input type="text" id="sex" th:value="${userInfo.sex}" placeholder="输入你的性别">
                                         </div>
                                     </div>
-
 
                                     <div class="am-form-group">
                                         <label for="interest" class="am-u-sm-3 am-form-label">兴趣</label>
