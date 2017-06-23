@@ -43,10 +43,6 @@ public class UserService {
         return  false;
     }
 
-
-
-
-
     //展示用户信息
     public UserInfo shwoUserInfo(String username){
         return userInfoDao.findOne(username);
@@ -54,17 +50,17 @@ public class UserService {
 
     //更新用户信息
     public void updateUserInfo(UserInfo user){
-        UserInfo userDB = userInfoDao.findOne(AuthorityTool.getPrincipal());
+        UserInfo userDB = userInfoDao.findOne("weber");
         userDB.setName(user.getName());
         userDB.setSex(user.getSex());
-        userDB.setBirth(user.getBirth());
-        userDB.setCountry(user.getCountry());
-        userDB.setCity(user.getCity());
-        userDB.setProvince(user.getProvince());
+        userDB.setInterest(user.getInterest());
         userDB.seteMail(user.geteMail());
         userDB.setPhone(user.getPhone());
         userDB.setQq(user.getQq());
-        userDB.setInterest(user.getInterest());
+        userDB.setCountry(user.getCountry());
+        userDB.setProvince(user.getProvince());
+        userDB.setCity(user.getCity());
+        userDB.setIntroduce(user.getIntroduce());
         userInfoDao.save(userDB);
     }
 

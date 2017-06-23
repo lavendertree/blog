@@ -29,11 +29,11 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers("/me/**").authenticated()
                 .anyRequest().permitAll()
                 .and().formLogin()
-                .loginPage("/login.html")
-                .loginProcessingUrl("/login")
+                .loginPage("/admin/login.html")
+                .loginProcessingUrl("/admin/login")
                 .failureHandler(new AjaxLoginFailureHandler())
                 .successHandler(new AjaxLoginSuccessHandler())
-                .and().logout().logoutUrl("/logout").logoutSuccessUrl("/login.html")
+                .and().logout().logoutUrl("/logout").logoutSuccessUrl("/admin/login")
                 .and().rememberMe().alwaysRemember(true)
                 .and().headers().frameOptions().sameOrigin();
 

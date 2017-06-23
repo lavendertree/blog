@@ -30,21 +30,21 @@ public class DispatcherController {
     @Autowired
     TagService tagService;
 
-    @GetMapping("/index")
+    @GetMapping("/admin/index")
     public String showAllArticle(Model model){
-//        model.addAttribute("bloglist",articleService.showAllArticle());
+        model.addAttribute("userInfo",userService.shwoUserInfo("weber"));
         model.addAttribute("page_index",true);
         return "/admin/index";
     }
 
-    @GetMapping(value = "/login.html")
+    @GetMapping(value = "/admin/login")
     String loginIn(){
         if(AuthorityTool.isAuthenticated())
-            return "login";
-        return "login";
+          return "/admin/index";
+        return "/admin/login";
     }
 
-    @GetMapping("/me.html")
+    @GetMapping("/me")
     String me(Model model){
         model.addAttribute("me",userService.shwoUserInfo(AuthorityTool.getPrincipal()));
         model.addAttribute("page_me",true);

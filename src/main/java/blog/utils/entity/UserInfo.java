@@ -4,7 +4,6 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
-import java.sql.Timestamp;
 
 /**
  * Created by weber on 2017/6/19.
@@ -16,7 +15,6 @@ public class UserInfo {
     private String password;
     private String name;
     private String sex;
-    private Timestamp birth;
     private String interest;
     private String eMail;
     private String phone;
@@ -24,6 +22,7 @@ public class UserInfo {
     private String country;
     private String province;
     private String city;
+    private String introduce;
 
 
     /** default constructor */
@@ -36,13 +35,12 @@ public class UserInfo {
         this.password=password;
     }
     /** full constructor */
-    public UserInfo(String username, String password, String name, String sex, Timestamp birth, String interest, String eMail
-            , String phone, Integer qq, String country, String province, String city){
+    public UserInfo(String username, String password, String name, String sex,String interest, String eMail
+            , String phone, Integer qq, String country, String province, String city,String introduce){
         this.username=username;
         this.password=password;
         this.name=name;
         this.sex=sex;
-        this.birth=birth;
         this.interest=interest;
         this.eMail=eMail;
         this.qq=qq;
@@ -50,6 +48,7 @@ public class UserInfo {
         this.country=country;
         this.province=province;
         this.city=city;
+        this.introduce=introduce;
     }
 
     @Id
@@ -89,16 +88,6 @@ public class UserInfo {
 
     public void setSex(String sex) {
         this.sex = sex;
-    }
-
-
-    @Column(name = "birth")
-    public Timestamp getBirth() {
-        return birth;
-    }
-
-    public void setBirth(Timestamp birth) {
-        this.birth = birth;
     }
 
 
@@ -172,6 +161,14 @@ public class UserInfo {
     }
 
 
+    @Column(name = "introduce")
+    public String getIntroduce() {
+        return introduce;
+    }
+
+    public void setIntroduce(String introduce) {
+        this.introduce = introduce;
+    }
 
 
 }
