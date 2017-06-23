@@ -19,7 +19,7 @@ public class BlogController {
     @Autowired
     TagService tagService;
 
-    @PostMapping("/addBlog")
+    @PostMapping("/admin/writeBlog.html")
     String addBlog(String title,String description,String content,Integer classId){
         if(title.equals(""))
             return "redirect:/addBlog.html";
@@ -27,8 +27,8 @@ public class BlogController {
         return "redirect:/me";
     }
 
-    @DeleteMapping("/deleteBlog/{id}")
-    void deleteBlog(@PathVariable("id") Integer id){
+    @PostMapping ("/admin/deleteBlog")
+    void deleteBlog(Integer id){
         articleService.deleteArticle(id);
     }
 
@@ -42,10 +42,6 @@ public class BlogController {
         articleService.addComment(titleId,vistorname,content);
     }
 
-    @DeleteMapping("/deleteComment/{commentId}")
-    void deleteComment(@PathVariable("commentId") Integer commentId){
-        articleService.deleteComment(commentId);
-    }
 
     @PostMapping("/addReply")
     void  addReply(Integer commentId,String reply){
@@ -62,8 +58,8 @@ public class BlogController {
         tagService.addTag(tagname);
     }
 
-    @DeleteMapping("/deleteTag/{id}")
-    void deleteTag(@PathVariable("id") Integer id){
+    @PostMapping("/admin/deleteCategory")
+    void deleteTag(Integer id){
         tagService.deleteTag(id);
     }
 

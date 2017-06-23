@@ -23,6 +23,26 @@
 
 <div th:replace="admin/index::header"></div>
 
+<script>
+    function deleteTag(classId) {
+        var tag = {
+            "id": classId,
+        }
+        $.ajax({
+            url: "/admin/deleteCategory",
+            type:"POST",
+            timeout:5000,
+            data: tag,
+            success: function () {
+                window.location.href = "/admin/category.html"
+            },
+            error:function (err) {
+                alert("网络错误！");
+            }
+        });
+    }
+</script>
+
 
 <div class="tpl-page-container tpl-page-header-fixed">
 
@@ -68,23 +88,23 @@
                             <tr>
                                 <th class="table-check"><input type="checkbox" class="tpl-table-fz-check"></th>
 
-                                <th class="table-title">文件名</th>
+                                <th class="table-title">类别名</th>
 
 
                                 <th class="table-set">操作</th>
                             </tr>
                             </thead>
                             <tbody>
-                            <tr>
+                            <tr th:each="category:${categorylist}">
                                 <td><input type="checkbox"></td>
 
-                                <td><a href="#">Business management</a></td>
+                                <td th:text="${category.classname}">Business management</td>
 
 
                                 <td>
                                     <div class="am-btn-toolbar">
                                         <div class="am-btn-group am-btn-group-xs">
-                                            <button class="am-btn am-btn-default am-btn-xs am-text-danger am-hide-sm-only"><span class="am-icon-trash-o"></span> 删除</button>
+                                            <button class="am-btn am-btn-default am-btn-xs am-text-danger am-hide-sm-only" th:onclick="'deleteTag(\''+${category.classId}+'\')'"><span class="am-icon-trash-o"></span> 删除</button>
                                         </div>
                                     </div>
                                 </td>

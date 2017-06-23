@@ -33,7 +33,6 @@ public class UserService {
 
     //更改密码
     public boolean updatePassword(String oldPassword,String newPassword) {
-
         UserInfo user = userInfoDao.findOne(AuthorityTool.getPrincipal());
         if (new StandardPasswordEncoder().matches(oldPassword,user.getPassword())){
             user.setPassword(new StandardPasswordEncoder().encode(newPassword));

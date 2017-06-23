@@ -6,12 +6,13 @@ import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
-import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpServletRequest;
 import java.io.File;
@@ -21,7 +22,7 @@ import java.io.IOException;
  * Created by weber on 2017/5/28.
  */
 
-@RestController
+@Controller
 public class FileUploadController {
 
     @Autowired
@@ -31,8 +32,8 @@ public class FileUploadController {
     *@function 上传文件
     * return
     */
-    @RequestMapping (value="/upload")
-    public boolean Upload(@RequestParam("file") MultipartFile uploadFile)throws Exception{
+    @RequestMapping (value="/admin/upload")
+    public String Upload(@RequestParam("file") MultipartFile uploadFile)throws Exception{
         if (!uploadFile.isEmpty()){
             //获取文件名
             String filename=uploadFile.getOriginalFilename();
@@ -41,24 +42,21 @@ public class FileUploadController {
             //转存,进行路径拼接=前半部分路径+文件名
             uploadFile.transferTo(new File(leftPath,filename));
         }
-        else{
-            return false;
-        }
-        return true;
+      return "redirect:/admin/file.html";
+
     }
 
     /*
     *@function 读取所有的文件并返回
     * return
      */
-    @GetMapping(value = "/listfiles")
-    public ModelAndView list(){
+    @GetMapping(value = "/admin/file.html")
+    public String list(Model model){
         String filePath=request.getSession().getServletContext().getRealPath("/")+"static/upload/";
-        ModelAndView mav=new ModelAndView("list");
         File uploadDest=new File(filePath);
         String[] fileNames=uploadDest.list();
-        mav.addObject(fileNames);
-        return mav;
+        model.addAttribute("files",fileNames);
+        return "/admin/file";
     }
 
     /*
@@ -79,16 +77,15 @@ public class FileUploadController {
                 headers, HttpStatus.CREATED);
     }
 
-    @RequestMapping(value="deletefile")
-    public boolean deleteFile(String filename){
+    @PostMapping(value="/admin/deletefile")
+    public String deleteFile(String filename){
         boolean flag=false;
         String path=request.getSession().getServletContext().getRealPath("/")+"static/upload/";
         File file=new File(path,filename);
         if (file.isFile()&&file.exists()){
             file.delete();
-            flag=true;
         }
-        return flag;
+        return "redirect:/admin/file";
     }
 }
 

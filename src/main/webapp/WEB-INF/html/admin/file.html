@@ -23,6 +23,25 @@
 
     <div th:replace="admin/index::header"></div>
 
+    <script>
+        function deleteFile(file) {
+            var filename = {
+                "filename": file,
+            }
+            $.ajax({
+                url: "/admin/deletefile",
+                type:"POST",
+                timeout:5000,
+                data: filename,
+                success: function () {
+                    window.location.reload(true);
+                },
+                error:function (err) {
+
+                }
+            });
+        }
+    </script>
 
     <div class="tpl-page-container tpl-page-header-fixed">
 
@@ -47,8 +66,10 @@
                     <div class="am-u-sm-12 am-u-md-6">
                         <div class="am-btn-toolbar">
                             <div class="am-btn-group am-btn-group-xs">
-                                <button type="button" class="am-btn am-btn-default am-btn-success"><span class="am-icon-plus"></span> 上传文件</button>
-                                <button type="button" class="am-btn am-btn-default am-btn-danger"><span class="am-icon-trash-o"></span> 删除</button>
+                                <form method="POST" enctype="multipart/form-data" action="/admin/upload">
+                                <input type="file" name="file">
+                                <input type="submit" value="上传">
+                                </form>
                             </div>
                         </div>
                     </div>
@@ -68,26 +89,24 @@
                                 <thead>
                                 <tr>
                                     <th class="table-check"><input type="checkbox" class="tpl-table-fz-check"></th>
-                                    <th class="table-id">ID</th>
-                                    <th class="table-title">文件名</th>
 
-                                    <th class="table-author am-hide-sm-only">文件大小</th>
-                                    <th class="table-date am-hide-sm-only">上传日期</th>
+                                    <th class="table-title">文件名</th>
+                                    <th class="table-author am-hide-sm-only"></th>
+                                    <th class="table-date am-hide-sm-only"></th>
                                     <th class="table-set">操作</th>
                                 </tr>
                                 </thead>
                                 <tbody>
-                                <tr>
+                                <tr th:each="file:${files}">
                                     <td><input type="checkbox"></td>
-                                    <td>1</td>
-                                    <td><a href="#">Business management</a></td>
+                                    <td th:text="${file}"><a href="#" ></a></td>
 
-                                    <td class="am-hide-sm-only">15b</td>
-                                    <td class="am-hide-sm-only">2014年9月4日 7:28:47</td>
+                                    <td class="am-hide-sm-only"></td>
+                                    <td class="am-hide-sm-only"></td>
                                     <td>
                                         <div class="am-btn-toolbar">
                                             <div class="am-btn-group am-btn-group-xs">
-                                                <button class="am-btn am-btn-default am-btn-xs am-text-danger am-hide-sm-only"><span class="am-icon-trash-o"></span> 删除</button>
+                                                <button class="am-btn am-btn-default am-btn-xs am-text-danger am-hide-sm-only" th:onclick="'deleteFile(\''+${file}+'\')'"><span class="am-icon-trash-o"></span> 删除</button>
                                             </div>
                                         </div>
                                     </td>
