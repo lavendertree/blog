@@ -44,7 +44,7 @@ public class DispatcherController {
         return "/admin/login";
     }
 
-    @GetMapping("/me.html")
+    @GetMapping("/me")
     String me(Model model){
         model.addAttribute("me",userService.shwoUserInfo(AuthorityTool.getPrincipal()));
         model.addAttribute("page_me",true);

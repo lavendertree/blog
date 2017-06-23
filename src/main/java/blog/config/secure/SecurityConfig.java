@@ -30,10 +30,10 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .anyRequest().permitAll()
                 .and().formLogin()
                 .loginPage("/admin/login.html")
-                .loginProcessingUrl("/login")
+                .loginProcessingUrl("/admin/login")
                 .failureHandler(new AjaxLoginFailureHandler())
                 .successHandler(new AjaxLoginSuccessHandler())
-                .and().logout().logoutUrl("/logout").logoutSuccessUrl("/login.html")
+                .and().logout().logoutUrl("/logout").logoutSuccessUrl("/admin/login")
                 .and().rememberMe().alwaysRemember(true)
                 .and().headers().frameOptions().sameOrigin();
 
