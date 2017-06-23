@@ -85,6 +85,7 @@ pre {
 }
 /* INFOBOXES ------------------------------------------------------------*/
 .infobox-info,
+.infobox-download,
 .infobox-warning,
 .infobox-success,
 .infobox-error {
@@ -101,6 +102,11 @@ pre {
   color: #00529B;
   background-color: #BDE5F8;
   background-image: url('../img/info-blue.png');
+}
+.infobox-download {
+  color: #00529B;
+  background-color: #BDE5F8;
+  background-image: url('../img/info-download.png');
 }
 .infobox-warning {
   color: #9F6000;

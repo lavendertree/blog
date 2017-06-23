@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" xmlns:th="http://www.thymeleaf.org"> <!--<![endif]-->
+<head>
+    <meta charset="utf-8" />
+    <title>Fox Template</title>
+    <meta name="description" content="" />
+    <meta name="viewport" content="width=device-width" />
+
+    <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
+    <link rel="stylesheet" href="../../../static/app/css/main.css" />
+    <link rel="stylesheet" href="../../../static/app/css/style.css" />
+    <link rel="stylesheet" href="../../../static/app/css/nivo-slider.css" />
+    <link rel="stylesheet" media="all" href="../../../static/app/css/responsive.css" />
+
+    <script src="../../../static/app/js/modernizr-2.6.1.min.js"></script>
+
+    <!-- GOOGLE FONTS -->
+    <link href='http://fonts.googleapis.com/css?family=Yanone+Kaffeesatz:400,300,200' rel='stylesheet' type='text/css' />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" /></head>
+<body>
+
+
+
+
+<!-- TOP -->
+<div th:replace="app/index::top"></div>
+<!-- ENDS TOP -->
+
+
+<!-- HEADER -->
+<div th:replace="app/index::header"></div>
+<!-- ENDS HEADER -->
+
+
+<!-- MAIN -->
+<div id="main" role="main" class="cf">
+
+    <!-- page-content -->
+    <div class="page-content">
+
+        <!-- entry-content -->
+        <div class="entry-content cf">
+
+            <!-- Infos -->
+            <h2 class="heading">File Downing</h2>
+            <a><p class="infobox-download">File Name</p></a>
+            <a><p class="infobox-download">File Name</p></a>
+            <a><p class="infobox-download">File Name</p></a>
+            <a><p class="infobox-download">File Name</p></a>
+            <!-- ENDS Infos -->
+
+            <div class="block-divider"></div>
+
+        </div>
+        <!-- ENDS entry-content -->
+
+    </div><!-- ENDS page-content -->
+
+
+</div>
+<!-- ENDS MAIN -->
+
+
+
+
+<!-- widgets -->
+<div th:replace="app/index::widgets"></div>
+<!-- ENDS widgets -->
+
+
+<!-- FOOTER -->
+<div th:replace="app/index::footer"></div>
+<!-- ENDS FOOTER -->
+
+<!-- JavaScript at the bottom for fast page loading -->
+<div th:replace="app/index::javascript"></div>
+<!-- ENDS javascripts -->
+
+</body>
+</html>
