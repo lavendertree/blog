@@ -19,6 +19,7 @@
     <script src="../../../static/admin/js/echarts.min.js"></script>
     <script>
         function logout() {
+            console.log(123);
             $("#logoutButton").click();
         }
 
@@ -182,13 +183,13 @@
                         <ul class="am-dropdown-content">
                             <li><a href="#"><span class="am-icon-bell-o"></span> 资料</a></li>
                             <li><a href="#"><span class="am-icon-cog"></span> 设置</a></li>
-                            <form th:action="@{/logout}" method="POST" style="display: none">
-                                <input type="submit" id="logoutButton" />
-                            </form>
-                            <li><a onclick="logout()"><span class="am-icon-power-off"></span> 退出</a></li>
+                            <li><a ><span class="am-icon-power-off"></span> 退出</a></li>
                         </ul>
                     </li>
-                    <li><a href="###" class="tpl-header-list-link"><span class="am-icon-sign-out tpl-header-list-ico-out-size"></span></a></li>
+                    <form th:action="@{/logout}" method="POST" style="display: none">
+                        <input type="submit" id="logoutButton" />
+                    </form>
+                    <li><a onclick="logout()" class="tpl-header-list-link"><span class="am-icon-sign-out tpl-header-list-ico-out-size"></span></a></li>
                 </ul>
             </div>
         </header>
@@ -212,14 +213,14 @@
                         </li>
 
                         <li class="tpl-left-nav-item">
-                            <a href="javascript:;" class="nav-link tpl-left-nav-link-list">
+                            <a  class="nav-link tpl-left-nav-link-list">
                                 <i class="am-icon-clone"></i>
                                 <span>博客列表</span>
                                 <i class="am-icon-angle-right tpl-left-nav-more-ico am-fr am-margin-right"></i>
                             </a>
                             <ul class="tpl-left-nav-sub-menu">
                                 <li>
-                                    <a href="blog-list.html">
+                                    <a th:href="@{/admin/blog-list}">
                                         <i class="am-icon-tasks"></i>
                                         <span>博客管理</span>
                                         <i class="tpl-left-nav-content tpl-badge-success">
@@ -227,7 +228,7 @@
                                         </i>
                                     </a>
 
-                                    <a href="table-images-list.html">
+                                    <a th:href="@{/admin/writeBlog}">
                                         <i class="am-icon-pencil-square-o"></i>
                                         <span>写博客</span>
 

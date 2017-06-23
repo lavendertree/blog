@@ -56,10 +56,11 @@
                         </div>
                         <div class="am-u-sm-12 am-u-md-3">
                             <div class="am-form-group">
-                                <select data-am-selected="{btnSize: 'sm'}">
-                                  <option value="option1">所有类别</option>
-                                  <option value="option2">IT业界</option>
-                                  <option value="option3">数码产品</option>
+                                <select  data-am-selected="{btnSize: 'sm'}">
+
+                                    <option value="option1">所有类别</option>
+                                    <option value="option1">所有类别</option>
+
                                 </select>
                             </div>
                         </div>
@@ -87,14 +88,14 @@
                                             <th class="table-set">操作</th>
                                         </tr>
                                     </thead>
-                                    <tbody>
-                                        <tr>
+                                    <tbody >
+                                        <tr th:each="blogs:${bloglist}">
                                             <td><input type="checkbox"></td>
 
-                                            <td><a href="#">Business management</a></td>
-                                            <td>default</td>
+                                            <a href="#"><td th:text="${blogs.title}"></td>></a>
+                                            <td th:text="${blogs.ClassificationByClassId.classname}"></td>
 
-                                            <td class="am-hide-sm-only">2014年9月4日 7:28:47</td>
+                                            <td  th:text="${blogs.time}" class="am-hide-sm-only" ></td>
                                             <td>
                                                 <div class="am-btn-toolbar">
                                                     <div class="am-btn-group am-btn-group-xs">

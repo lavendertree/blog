@@ -30,6 +30,13 @@ public class DispatcherController {
     @Autowired
     TagService tagService;
 
+    @GetMapping(value = "/admin/login")
+    String loginIn(){
+        if(AuthorityTool.isAuthenticated())
+            return "redirect:/admin/index";
+        return "/admin/login";
+    }
+
     @GetMapping("/admin/index")
     public String showAllArticle(Model model){
         model.addAttribute("userInfo",userService.shwoUserInfo("weber"));
@@ -37,11 +44,13 @@ public class DispatcherController {
         return "/admin/index";
     }
 
-    @GetMapping(value = "/admin/login")
-    String loginIn(){
-        if(AuthorityTool.isAuthenticated())
-          return "redirect:/admin/index";
-        return "/admin/login";
+
+    @GetMapping("/admin/blog-list")
+    String adminBlog(Model model){
+        model.addAttribute("bloglist",articleService.showAllArticle());
+        model.addAttribute("tagGroup",tagService.showTag());
+        model.addAttribute("page_adminblog",true);
+        return "/admin/blog-list";
     }
 
     @GetMapping("/me")
@@ -57,11 +66,11 @@ public class DispatcherController {
         return "password";
     }
 
-    @GetMapping("/admin/blog-list")
-    String adminBlog(Model model){
-        model.addAttribute("blog",articleService.showAllArticle());
-        model.addAttribute("page_adminblog",true);
-        return "/admin/blog-list";
+
+
+    @GetMapping("/admin/writeBlog")
+    String writeBlog(Model model){
+        return "/admin/writeBlog";
     }
 
     @GetMapping("/adminFiles")
