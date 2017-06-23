@@ -40,7 +40,7 @@ public class DispatcherController {
     @GetMapping(value = "/admin/login")
     String loginIn(){
         if(AuthorityTool.isAuthenticated())
-          return "/admin/index";
+          return "redirect:/admin/index";
         return "/admin/login";
     }
 
