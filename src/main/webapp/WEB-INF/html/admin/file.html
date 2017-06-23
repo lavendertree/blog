@@ -1,0 +1,130 @@
+<!doctype html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Amaze UI Admin index Examples</title>
+    <meta name="description" content="这是一个 index 页面">
+    <meta name="keywords" content="index">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="Cache-Control" content="no-siteapp" />
+    <link rel="icon" type="image/png" href="../../../static/admin/i/favicon.png">
+    <link rel="apple-touch-icon-precomposed" href="../../../static/admin/i/app-icon72x72@2x.png">
+    <meta name="apple-mobile-web-app-title" content="Amaze UI" />
+    <link rel="stylesheet" href="../../../static/admin/css/amazeui.min.css" />
+    <link rel="stylesheet" href="../../../static/admin/css/admin.css">
+    <link rel="stylesheet" href="../../../static/admin/css/app.css">
+</head>
+
+<body data-type="generalComponents">
+
+
+    <div th:replace="admin/index::header"></div>
+
+
+    <div class="tpl-page-container tpl-page-header-fixed">
+
+        <div th:replace="admin/index::left-nav"></div>
+
+
+        <div class="tpl-content-wrapper">
+            <div class="tpl-content-page-title">
+                文件管理
+            </div>
+            <ol class="am-breadcrumb">
+                <li><a href="#" class="am-icon-home">首页</a></li>
+                <li class="am-active">文件管理</li>
+            </ol>
+            <div class="tpl-portlet-components">
+                <div class="portlet-title">
+                    <div class="caption font-green bold">
+                        <span class="am-icon-file"></span> 文件管理
+                    </div>
+                </div>
+                <div class="am-g">
+                    <div class="am-u-sm-12 am-u-md-6">
+                        <div class="am-btn-toolbar">
+                            <div class="am-btn-group am-btn-group-xs">
+                                <button type="button" class="am-btn am-btn-default am-btn-success"><span class="am-icon-plus"></span> 上传文件</button>
+                                <button type="button" class="am-btn am-btn-default am-btn-danger"><span class="am-icon-trash-o"></span> 删除</button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="am-u-sm-12 am-u-md-3">
+                        <div class="am-input-group am-input-group-sm">
+                            <input type="text" class="am-form-field">
+                            <span class="am-input-group-btn">
+                                    <button class="am-btn  am-btn-default am-btn-success tpl-am-btn-success am-icon-search" type="button"></button>
+                                </span>
+                        </div>
+                    </div>
+                </div>
+                <div class="am-g">
+                    <div class="am-u-sm-12">
+                        <form class="am-form">
+                            <table class="am-table am-table-striped am-table-hover table-main">
+                                <thead>
+                                <tr>
+                                    <th class="table-check"><input type="checkbox" class="tpl-table-fz-check"></th>
+                                    <th class="table-id">ID</th>
+                                    <th class="table-title">文件名</th>
+
+                                    <th class="table-author am-hide-sm-only">文件大小</th>
+                                    <th class="table-date am-hide-sm-only">上传日期</th>
+                                    <th class="table-set">操作</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                <tr>
+                                    <td><input type="checkbox"></td>
+                                    <td>1</td>
+                                    <td><a href="#">Business management</a></td>
+
+                                    <td class="am-hide-sm-only">15b</td>
+                                    <td class="am-hide-sm-only">2014年9月4日 7:28:47</td>
+                                    <td>
+                                        <div class="am-btn-toolbar">
+                                            <div class="am-btn-group am-btn-group-xs">
+                                                <button class="am-btn am-btn-default am-btn-xs am-text-danger am-hide-sm-only"><span class="am-icon-trash-o"></span> 删除</button>
+                                            </div>
+                                        </div>
+                                    </td>
+                                </tr>
+                                </tbody>
+                            </table>
+                            <div class="am-cf">
+
+                                <div class="am-fr">
+                                    <ul class="am-pagination tpl-pagination">
+                                        <li class="am-disabled"><a href="#">«</a></li>
+                                        <li class="am-active"><a href="#">1</a></li>
+                                        <li><a href="#">2</a></li>
+                                        <li><a href="#">3</a></li>
+                                        <li><a href="#">4</a></li>
+                                        <li><a href="#">5</a></li>
+                                        <li><a href="#">»</a></li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <hr>
+
+                        </form>
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <script src="../../../static/admin/js/jquery.min.js"></script>
+    <script src="../../../static/admin/js/amazeui.min.js"></script>
+    <script src="../../../static/admin/js/app.js"></script>
+</body>
+
+</html>
