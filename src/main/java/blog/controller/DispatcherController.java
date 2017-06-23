@@ -57,11 +57,11 @@ public class DispatcherController {
         return "password";
     }
 
-    @GetMapping("/adminBlog")
+    @GetMapping("/admin/blog-list")
     String adminBlog(Model model){
         model.addAttribute("blog",articleService.showAllArticle());
         model.addAttribute("page_adminblog",true);
-        return "adminBlog";
+        return "/admin/blog-list";
     }
 
     @GetMapping("/adminFiles")
