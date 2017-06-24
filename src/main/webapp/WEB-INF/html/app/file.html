@@ -39,17 +39,16 @@
 <div id="main" role="main" class="cf">
 
     <!-- page-content -->
-    <div class="page-content">
+    <div class="page-content" >
 
         <!-- entry-content -->
-        <div class="entry-content cf">
+        <div class="entry-content cf" >
 
             <!-- Infos -->
-            <h2 class="heading">File Downing</h2>
-            <a><p class="infobox-download">File Name</p></a>
-            <a><p class="infobox-download">File Name</p></a>
-            <a><p class="infobox-download">File Name</p></a>
-            <a><p class="infobox-download">File Name</p></a>
+            <h2 class="heading">文件 下载</h2>
+            <div th:each="file:${files}">
+            <a th:href="'/app/download/'+${file}"><p class="infobox-download">[[${file}]]</p></a>
+            </div>
             <!-- ENDS Infos -->
 
             <div class="block-divider"></div>
