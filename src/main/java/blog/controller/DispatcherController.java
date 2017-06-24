@@ -55,6 +55,7 @@ public class DispatcherController {
 
     @GetMapping("/admin/writeBlog")
     String writeBlog(Model model){
+        model.addAttribute("categorylist",tagService.showTag());
         return "/admin/writeBlog";
     }
 
@@ -77,23 +78,45 @@ public class DispatcherController {
         return "/admin/changePass";
     }
 
-    @GetMapping("/me")
-    String me(Model model){
-        model.addAttribute("me",userService.shwoUserInfo(AuthorityTool.getPrincipal()));
-        model.addAttribute("page_me",true);
-        return "me";
+    @GetMapping("/admin/updateBlog/{id}")
+    String updateBlog(@PathVariable("id") Integer id ,Model model){
+        model.addAttribute("blog",articleService.showOneArticle(id));
+        model.addAttribute("categorylist",tagService.showTag());
+        return "/admin/updateBlog";
+    }
+
+    @GetMapping("/admin/search")
+    String search(String keyword,Model model){
+        model.addAttribute("bloglist",articleService.search(keyword));
+        model.addAttribute("categorylist",tagService.showTag());
+        return "/admin/blog-list";
+    }
+
+    @RequestMapping("/admin/deleteComment/{commentId}")
+    String deleteComment(@PathVariable("commentId") Integer commentId){
+        articleService.deleteComment(commentId);
+        return "redirect:/admin/comment-list.html";
     }
 
 
-    @GetMapping("/blog/{id}")
-    String blog(@PathVariable Integer id, Model model){
-        Article article=articleService.showOneArticle(id);
+
+    @GetMapping(value={"/app/index.html","/"})
+    String me(Model model){
+        model.addAttribute("latestblog",articleService.showRecentArticle());
+        return "app/index";
+    }
+
+
+    @GetMapping("/app/single/{titleId}")
+    String blog(@PathVariable Integer titleId, Model model){
+        Article article=articleService.showOneArticle(titleId);
         if(article==null)
             return "404";
         model.addAttribute("blog",article);
-        model.addAttribute("comment",articleService.showComment(id));
-        return "blog";
+        model.addAttribute("comment",articleService.showComment(titleId));
+        return "app/single";
     }
+
 
     @GetMapping("/tag/{tagid}")
     String blogByTag(@PathVariable Integer tagid,ModelMap modelMap){
@@ -102,10 +125,6 @@ public class DispatcherController {
         return "tag";
     }
 
-    @RequestMapping("/admin/deleteComment/{commentId}")
-    String deleteComment(@PathVariable("commentId") Integer commentId){
-        articleService.deleteComment(commentId);
-        return "redirect:/admin/comment-list.html";
-    }
+
 
 }

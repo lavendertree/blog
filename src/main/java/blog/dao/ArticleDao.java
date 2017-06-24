@@ -26,4 +26,6 @@ public interface ArticleDao extends JpaRepository<Article,Integer> {
 
     public void deleteByTitleId(Integer titleId);
 
+    public List<Article> findByTitleContaining(String title);
+
 }

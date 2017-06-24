@@ -32,8 +32,8 @@ public class BlogController {
         articleService.deleteArticle(id);
     }
 
-    @PatchMapping ("/updateBlog/{id}")
-    void updateBlog(@PathVariable("id") Integer id ,String title,String description,String content,Integer classId){
+    @PostMapping ("/admin/updateBlog.html")
+    void updateBlog(Integer id ,String title,String description,String content,Integer classId){
         articleService.updateArticle(id,title,description,content,classId);
     }
 
@@ -41,7 +41,6 @@ public class BlogController {
     void addComment(Integer titleId,String vistorname,String content){
         articleService.addComment(titleId,vistorname,content);
     }
-
 
     @PostMapping("/addReply")
     void  addReply(Integer commentId,String reply){
@@ -53,7 +52,7 @@ public class BlogController {
         articleService.deleteReply(replyId);
     }
 
-    @PostMapping("/addTag")
+    @PostMapping("/admin/addTag.html")
     void addTag(String tagname){
         tagService.addTag(tagname);
     }
