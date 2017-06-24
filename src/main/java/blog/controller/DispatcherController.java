@@ -103,20 +103,20 @@ public class DispatcherController {
     @GetMapping(value={"/app/index.html","/"})
     String me(Model model){
         model.addAttribute("latestblog",articleService.showRecentArticle());
-        model.addAttribute("page_me",true);
         return "app/index";
     }
 
 
-    @GetMapping("/blog/{id}")
-    String blog(@PathVariable Integer id, Model model){
-        Article article=articleService.showOneArticle(id);
+    @GetMapping("/app/single/{titleId}")
+    String blog(@PathVariable Integer titleId, Model model){
+        Article article=articleService.showOneArticle(titleId);
         if(article==null)
             return "404";
         model.addAttribute("blog",article);
-        model.addAttribute("comment",articleService.showComment(id));
-        return "blog";
+        model.addAttribute("comment",articleService.showComment(titleId));
+        return "app/single";
     }
+
 
     @GetMapping("/tag/{tagid}")
     String blogByTag(@PathVariable Integer tagid,ModelMap modelMap){

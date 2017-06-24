@@ -116,38 +116,22 @@
 			
 			<!-- featured -->
 			<ul class="feature cf">
-				<li>
-					<a href="single.html" class="thumb">
-						<img src="../../../static/app/img/dummies/t1.jpg" alt="Thumbnail" />
-						<div class="img-overlay">READ MORE</div>
-					</a>
-					<a href="single.html" class="title"></a>
-					<div class="categories"><a href="#">webdesign, </a><a href="#">print, </a><a href="#">photo</a></div>
-					<div class="excerpt">Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Vestibulum tortor quam, feugiat vitae, ultricies eget, tempor sit amet, ante.</div>
-					<a href="single.html" class="action-button">READ MORE</a>
-				</li>
-				
-				<li>
-					<a href="single.html" class="thumb">
+
+
+				<li th:each="blog:${latestblog}">
+					<a class="thumb" th:href="'/app/single/'+${blog.titleId}" >
 						<img src="../../../static/app/img/dummies/t2.jpg" alt="Thumbnail" />
 						<div class="img-overlay">READ MORE</div>
 					</a>
-					<a href="single.html" class="title">LOREM IPSUM DOLOR</a>
-					<div class="categories"><a href="#">webdesign, </a><a href="#">print, </a><a href="#">photo</a></div>
-					<div class="excerpt">Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Vestibulum tortor quam, feugiat vitae, ultricies eget, tempor sit amet, ante.</div>
-					<a href="single.html" class="action-button">READ MORE</a>
+
+
+                    <a th:href="'/app/single/'+${blog.titleId}" class="title">[[${blog.title}]]</a>
+					<div class="categories"><a href="#">[[${blog.classificationByClassId.classname}]]</a></div>
+					<div class="excerpt">[[${blog.description}]]</div>
+					<a th:href="'/app/single/'+${blog.titleId}" class="action-button">READ MORE</a>
 				</li>
-				
-				<li>
-					<a href="single.html" class="thumb">
-						<img src="../../../static/app/img/dummies/t3.jpg" alt="Thumbnail" />
-						<div class="img-overlay">READ MORE</div>
-					</a>
-					<a href="single.html" class="title">LOREM IPSUM DOLOR</a>
-					<div class="categories"><a href="#">webdesign, </a><a href="#">print, </a><a href="#">photo</a></div>
-					<div class="excerpt">Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Vestibulum tortor quam, feugiat vitae, ultricies eget, tempor sit amet, ante.</div>
-					<a href="single.html" class="action-button">READ MORE</a>
-				</li>
+
+
 			</ul>
 			<!-- ENDS featured -->
 			
@@ -156,7 +140,7 @@
 		
 			
 			
-		<div th:fragment="widget">
+		<div th:fragment="widgets">
 			<!-- widgets -->
 			<div class="widget-holder">
 				<div class="left-fold"></div>
