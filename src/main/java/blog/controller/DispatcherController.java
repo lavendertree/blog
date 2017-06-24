@@ -6,14 +6,14 @@ import blog.service.UserService;
 import blog.utils.authority.AuthorityTool;
 import blog.utils.entity.Article;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
-
-import java.util.List;
 
 /**
  * Created by weber on 2017/6/3.
@@ -47,7 +47,8 @@ public class DispatcherController {
 
     @GetMapping("/admin/blog-list")
     String adminBlog(Model model){
-        model.addAttribute("bloglist",articleService.showAllArticle());
+        Pageable pageable=new PageRequest(0,10,new Sort(Sort.Direction.DESC,"time"));
+        model.addAttribute("bloglist",articleService.showAllArticle(pageable));
         model.addAttribute("categorylist",tagService.showTag());
         model.addAttribute("page_adminblog",true);
         return "/admin/blog-list";
@@ -110,21 +111,21 @@ public class DispatcherController {
     @GetMapping("/app/single/{titleId}")
     String blog(@PathVariable Integer titleId, Model model){
         Article article=articleService.showOneArticle(titleId);
-        if(article==null)
-            return "404";
         model.addAttribute("blog",article);
         model.addAttribute("comment",articleService.showComment(titleId));
         return "app/single";
     }
 
-
-    @GetMapping("/tag/{tagid}")
-    String blogByTag(@PathVariable Integer tagid,ModelMap modelMap){
-        List<Article> blogtaglist=articleService.showTagArticle(tagid);
-        modelMap.addAttribute("blogtaglist",blogtaglist);
-        return "tag";
+    @GetMapping("/app/blog.html")
+    String blogList(Model model){
+        Pageable pageable=new PageRequest(0,4,new Sort(Sort.Direction.DESC,"time"));
+        model.addAttribute("bloglist",articleService.showAllArticle(pageable));
+        return "app/blog";
     }
 
-
+    @GetMapping("/app/contact.html")
+    String contact(){
+        return "app/contact";
+    }
 
 }

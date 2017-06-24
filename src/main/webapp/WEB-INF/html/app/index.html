@@ -60,23 +60,15 @@
 
 					<!-- left nav -->
 					<ul id="left-nav" class="sf-menu">
-						<li><a href="page.html">FEATURES</a>
-							<ul>
-								<li><a href="page.html">Columns</a></li>
-								<li><a href="page-typography.html">Typography</a></li>
-								<li><a href="page-elements.html">Elements</a></li>
-							</ul>
-						</li>
-						<li><a href="blog.html">BLOG</a></li>
-						<li class="current-menu-item"><a href="index.html">HOME</a></li>
+						<li><a th:href="@{/app/blog.html}">BLOG</a></li>
+						<li class="current-menu-item"><a th:href="@{/app/index.html}">HOME</a></li>
 					</ul>
 					<!-- ends left nav -->
 
 					<!-- right nav -->
 					<ul id="right-nav" class="sf-menu">
-						<li><a href="work.html">WORK</a></li>
-						<li><a href="contact.html">CONTACT</a></li>
-						<li><a href="#">PURCHASE</a></li>
+						<li><a th:href="@{/app/file.html}">FILE</a></li>
+						<li><a th:href="@{/app/contact.html}">CONTACT</a></li>
 					</ul>
 					<!-- ENDS right nav -->
 

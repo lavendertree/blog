@@ -4,7 +4,6 @@ import com.fasterxml.jackson.annotation.JsonFormat;
 
 import javax.persistence.*;
 import java.sql.Timestamp;
-import java.util.Collection;
 
 /**
  * Created by weber on 2017/6/19.
@@ -14,10 +13,11 @@ import java.util.Collection;
 public class VistorComment {
     private int commentId;
     private String vistorName;
+    private String replyer;
+    private String mail;
     private String comment;
     @JsonFormat(pattern = "yyyy-MM-dd")
     private Timestamp commentTime;
-    private Collection<UserReply> userRepliesByCommentId;
     private Article articleByTitleId;
 
     @Id
@@ -42,6 +42,25 @@ public class VistorComment {
     }
 
 
+    @Column(name = "mail")
+    public String getMail() {
+        return mail;
+    }
+
+    public void setMail(String mail) {
+        this.mail = mail;
+    }
+
+    @Column(name = "replyer")
+    public String getReplyer() {
+        return replyer;
+    }
+
+    public void setReplyer(String replyer) {
+        this.replyer = replyer;
+    }
+
+
     @Column(name = "comment")
     public String getComment() {
         return comment;
@@ -61,14 +80,6 @@ public class VistorComment {
         this.commentTime = commentTime;
     }
 
-    @OneToMany(fetch = FetchType.LAZY,mappedBy = "vistorCommentByCommentId")
-    public Collection<UserReply> getUserRepliesByCommentId() {
-        return userRepliesByCommentId;
-    }
-
-    public void setUserRepliesByCommentId(Collection<UserReply> userRepliesByCommentId) {
-        this.userRepliesByCommentId = userRepliesByCommentId;
-    }
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "titleID", referencedColumnName = "titleID", nullable = false)
