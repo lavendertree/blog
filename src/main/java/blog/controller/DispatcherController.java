@@ -92,12 +92,19 @@ public class DispatcherController {
         return "/admin/blog-list";
     }
 
+    @RequestMapping("/admin/deleteComment/{commentId}")
+    String deleteComment(@PathVariable("commentId") Integer commentId){
+        articleService.deleteComment(commentId);
+        return "redirect:/admin/comment-list.html";
+    }
 
-    @GetMapping("/me")
+
+
+    @GetMapping(value={"/app/index.html","/"})
     String me(Model model){
-        model.addAttribute("me",userService.shwoUserInfo(AuthorityTool.getPrincipal()));
+        model.addAttribute("latestblog",articleService.showRecentArticle());
         model.addAttribute("page_me",true);
-        return "me";
+        return "app/index";
     }
 
 
@@ -118,10 +125,6 @@ public class DispatcherController {
         return "tag";
     }
 
-    @RequestMapping("/admin/deleteComment/{commentId}")
-    String deleteComment(@PathVariable("commentId") Integer commentId){
-        articleService.deleteComment(commentId);
-        return "redirect:/admin/comment-list.html";
-    }
+
 
 }

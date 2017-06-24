@@ -83,7 +83,7 @@ public class ArticleService {
 
     //获取最新的博文
     public Page<Article> showRecentArticle(){
-        Pageable pageable= (Pageable) new PageRequest(0,10);
+        Pageable pageable= (Pageable) new PageRequest(0,3);
         return articleDao.showLastestBlog( pageable);
     }
 
