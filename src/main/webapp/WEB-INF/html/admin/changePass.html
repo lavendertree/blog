@@ -27,6 +27,22 @@
     function change() {
         var oldPassword = $("#oldPassword").val();
         var newPassword = $("#newPassword").val();
+        var confirmPassword = $("#confirmPassword").val();
+
+        if(oldPassword==""){
+            alert("原密码不能为空");
+            return;
+        }else if(newPassword==""){
+            alert("新密码不能为空");
+            return;
+        }else if(confirmPassword==""){
+            alert("确认密码不能为空");
+            return;
+        }else if(confirmPassword!=newPassword){
+            alert("新密码和确认密码密码不一致");
+            return;
+        }
+
         var data = {
             "oldPassword":oldPassword,
             "newPassword":newPassword
