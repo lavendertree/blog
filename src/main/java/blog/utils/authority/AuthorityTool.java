@@ -3,6 +3,7 @@ package blog.utils.authority;
 
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.User;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -18,7 +19,7 @@ public class AuthorityTool {
      */
     public static boolean isAuthenticated(){
         Authentication authentication=SecurityContextHolder.getContext().getAuthentication();
-        if(authentication==null||authentication.getPrincipal().equals("annoymousUser")||!authentication.isAuthenticated())
+        if(authentication==null||authentication.getPrincipal().equals("anonymousUser")||!authentication.isAuthenticated())
             return false;
         else {
             return true;
@@ -41,7 +42,9 @@ public class AuthorityTool {
     *@return 用户名
      */
     public static String getPrincipal(){
-        return SecurityContextHolder.getContext().getAuthentication().getName();
+        Authentication authentication= SecurityContextHolder.getContext().getAuthentication();
+        User user=(User)authentication.getPrincipal();
+        return user.getUsername();
     }
 
 }

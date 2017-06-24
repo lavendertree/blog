@@ -16,12 +16,45 @@
     <link rel="stylesheet" href="../../../static/admin/css/amazeui.min.css" />
     <link rel="stylesheet" href="../../../static/admin/css/admin.css">
     <link rel="stylesheet" href="../../../static/admin/css/app.css">
+    <script type="text/javascript" src="../../../static/admin/js/wangEditor.min.js"></script>
 </head>
 
 <body data-type="generalComponents">
 
 
     <div th:replace="admin/index::header"></div>
+
+    <script>
+        function newBlog() {
+            var title=$("#title");
+            var content=$(".blog").html();
+            var description=$("#description");
+            var classId=5;
+            if(title==""||content==""){
+                alert("不能为空");
+                return;
+            }
+            var blog ={
+                "title":title,
+                "description":description,
+                "content":content,
+                "classId":classId
+            }
+            $.ajax({
+                url:"/admin/writeBlog.html",
+                type:"POST",
+                timeout:50000,
+                data:blog,
+                success:function (result) {
+                    window.location.href="/admin/blog-list";
+                },
+                error:function (err) {
+                    alert("网络错误");
+                }
+            });
+        }
+
+    </script>
 
 
     <div class="tpl-page-container tpl-page-header-fixed">
@@ -48,26 +81,19 @@
                         <div class="tpl-form-body tpl-form-line">
                             <form class="am-form tpl-form-line-form">
                                 <div class="am-form-group">
-                                    <label for="user-name" class="am-u-sm-3 am-form-label">标题 <span class="tpl-form-line-small-title">Title</span></label>
+                                    <label for="title" class="am-u-sm-3 am-form-label">标题 <span class="tpl-form-line-small-title">Title</span></label>
                                     <div class="am-u-sm-9">
-                                        <input type="text" class="tpl-form-input" id="user-name" placeholder="请输入标题文字">
+                                        <input type="text" class="tpl-form-input" id="title" placeholder="请输入标题">
                                         <small>请填写标题文字10-20字左右。</small>
                                     </div>
                                 </div>
 
-                                <div class="am-form-group">
-                                    <label for="user-email" class="am-u-sm-3 am-form-label">发布时间 <span class="tpl-form-line-small-title">Time</span></label>
-                                    <div class="am-u-sm-9">
-                                        <input type="text" class="am-form-field tpl-form-no-bg" placeholder="发布时间" data-am-datepicker="" readonly/>
-                                        <small>发布时间为必填</small>
-                                    </div>
-                                </div>
 
                                 <div class="am-form-group">
                                     <label for="user-phone" class="am-u-sm-3 am-form-label">分类 <span class="tpl-form-line-small-title">Categories</span></label>
                                     <div class="am-u-sm-9">
                                         <select data-am-selected="{searchBox: 1}">
-                                          <option value="a">-The.CC</option>
+                                          <option value="a">Spring</option>
                                           <option value="b">夕风色</option>
                                           <option value="o">Orange</option>
                                         </select>
@@ -75,9 +101,9 @@
                                 </div>
 
                                 <div class="am-form-group">
-                                    <label class="am-u-sm-3 am-form-label">标签 <span class="tpl-form-line-small-title">TAGS</span></label>
+                                    <label class="am-u-sm-3 am-form-label">概要 <span class="tpl-form-line-small-title">Description</span></label>
                                     <div class="am-u-sm-9">
-                                        <input type="text" placeholder="输入标签">
+                                        <input type="text" id="description" placeholder="输入博文概要">
                                     </div>
                                 </div>
 
@@ -92,42 +118,26 @@
                                                  <i class="am-icon-cloud-upload"></i> 添加封面图片</button>
                                             <input id="doc-form-file" type="file" multiple>
                                         </div>
-
                                     </div>
                                 </div>
 
 
                                 <div class="am-form-group">
-                                    <label for="user-intro" class="am-u-sm-3 am-form-label">隐藏文章</label>
-                                    <div class="am-u-sm-9">
-                                        <div class="tpl-switch">
-                                            <input type="checkbox" class="ios-switch bigswitch tpl-switch-btn" checked />
-                                            <div class="tpl-switch-btn-view">
-                                                <div>
-                                                </div>
-                                            </div>
-                                        </div>
-
-                                    </div>
-                                </div>
-
-                                <div class="am-form-group">
-                                    <label for="user-intro" class="am-u-sm-3 am-form-label">文章内容</label>
-                                    <div class="am-u-sm-9 blog" >
+                                    <label for="content" class="am-u-sm-3 am-form-label">文章内容</label>
+                                    <div  class="am-u-sm-9 blog" >
                                         <p>初始化的内容</p>
                                     </div>
 
-                                    <script type="text/javascript" src="../../../static/admin/js/wangEditor.min.js"></script>
                                     <script type="text/javascript">
                                         var E = window.wangEditor;
                                         var editor = new E('.blog');
-                                        editor.create()
+                                        editor.create();
                                     </script>
                                 </div>
 
                                 <div class="am-form-group">
                                     <div class="am-u-sm-9 am-u-sm-push-3">
-                                        <button type="button" class="am-btn am-btn-primary tpl-btn-bg-color-success ">提交</button>
+                                        <button type="button" onclick="newBlog()" class="am-btn am-btn-primary tpl-btn-bg-color-success ">提交</button>
                                     </div>
                                 </div>
                             </form>
@@ -135,19 +145,7 @@
                         </div>
                     </div>
                 </div>
-
-
             </div>
-
-
-
-
-
-
-
-
-
-
         </div>
 
     </div>

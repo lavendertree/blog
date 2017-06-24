@@ -24,7 +24,6 @@
     <div th:replace="admin/index::header"></div>
 
 
-
     <div class="tpl-page-container tpl-page-header-fixed">
 
         <div th:replace="admin/index::left-nav"></div>
@@ -58,13 +57,13 @@
                     </div>
 
                     <ul class="tpl-task-list">
-                        <li>
+                        <li  th:each="com:${commentlist}">
                             <div class="task-checkbox">
                                 <input type="hidden" value="1" name="test">
                                 <input type="checkbox" class="liChild" value="2" name="test"> </div>
                             <div class="task-title">
-                                <span class="task-title-sp"> Amaze UI Icon 组件目前使用了 Font Awesome </span>
-                                <span class="label label-sm label-success">技术部</span>
+                                <span class="task-title-sp" th:text="${com.comment}"> </span>
+                                <span class="label label-sm label-success" th:text="${com.articleByTitleId.title}"></span>
                                 <span class="task-bell">
                                             <i class="am-icon-bell-o"></i>
                                         </span>
@@ -80,7 +79,7 @@
                                                 <i class="am-icon-check"></i> 回复 </a>
                                         </li>
                                         <li>
-                                            <a href="javascript:;">
+                                            <a th:href="'/admin/deleteComment/'+${com.commentId}">
                                                 <i class="am-icon-trash-o"></i> 删除 </a>
                                         </li>
                                     </ul>

@@ -6,7 +6,6 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.builders.WebSecurity;
-import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.crypto.password.StandardPasswordEncoder;
 
@@ -15,7 +14,6 @@ import org.springframework.security.crypto.password.StandardPasswordEncoder;
  */
 
 @Configuration
-@EnableWebSecurity
 @ComponentScan(basePackageClasses =UserServiceDetails.class )
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
@@ -26,11 +24,11 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity http) throws Exception {
         http
                 .authorizeRequests()
-                .antMatchers("/me/**").authenticated()
-                .anyRequest().permitAll()
+                .antMatchers("/app/**","/admin/login","/login").permitAll()
+                .anyRequest().authenticated()
                 .and().formLogin()
-                .loginPage("/admin/login.html")
-                .loginProcessingUrl("/admin/login")
+                .loginPage("/admin/login")
+                .loginProcessingUrl("/login")
                 .failureHandler(new AjaxLoginFailureHandler())
                 .successHandler(new AjaxLoginSuccessHandler())
                 .and().logout().logoutUrl("/logout").logoutSuccessUrl("/admin/login")

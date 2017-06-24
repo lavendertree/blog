@@ -29,7 +29,7 @@ public class MeController {
         userService.updateUserInfo(user);
     }
 
-    @PostMapping("/password")
+    @PostMapping("/admin/changePass.html")
     boolean changPassword(String oldPassword,String newPassword){
         return userService.updatePassword(oldPassword,newPassword);
     }

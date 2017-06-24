@@ -23,6 +23,32 @@
 
     <div th:replace="admin/index::header"></div>
 
+    <script>
+        function deleteblog(titleId) {
+            var blog = {
+                "id": titleId,
+            }
+            $.ajax({
+                url: "/admin/deleteBlog",
+                type:"POST",
+                timeout:5000,
+                data: blog,
+                success: function (result) {
+                    alert("删除成功");
+                    window.location.href = "/admin/blog-list"
+                },
+                error:function (err) {
+                    alert("网络错误！");
+                }
+            });
+        }
+
+        function writeBlog() {
+                window.location.reload("/admin/writeBlog");
+        }
+    </script>
+
+
 
     <div class="tpl-page-container tpl-page-header-fixed">
 
@@ -49,7 +75,7 @@
                         <div class="am-u-sm-12 am-u-md-6">
                             <div class="am-btn-toolbar">
                                 <div class="am-btn-group am-btn-group-xs">
-                                    <button type="button" class="am-btn am-btn-default am-btn-success"><span class="am-icon-plus"></span> 新增</button>
+                                    <button type="button" class="am-btn am-btn-default am-btn-success" ><a th:href="@{/admin/writeBlog}"><span class="am-icon-plus"></span> 新增</a></button>
                                     <button type="button" class="am-btn am-btn-default am-btn-danger"><span class="am-icon-trash-o"></span> 删除</button>
                                 </div>
                             </div>
@@ -57,9 +83,8 @@
                         <div class="am-u-sm-12 am-u-md-3">
                             <div class="am-form-group">
                                 <select data-am-selected="{btnSize: 'sm'}">
-                                  <option value="option1">所有类别</option>
-                                  <option value="option2">IT业界</option>
-                                  <option value="option3">数码产品</option>
+                                    <option value="option1">所有类别</option>
+                                    <option th:each="category:${categorylist}" th:value="${category.classId}" th:text="${category.classname}" ></option>
                                 </select>
                             </div>
                         </div>
@@ -87,19 +112,19 @@
                                             <th class="table-set">操作</th>
                                         </tr>
                                     </thead>
-                                    <tbody>
-                                        <tr>
+                                    <tbody >
+                                        <tr th:each="blogs:${bloglist}">
                                             <td><input type="checkbox"></td>
 
-                                            <td><a href="#">Business management</a></td>
-                                            <td>default</td>
+                                            <a href="#"><td th:text="${blogs.title}"></td></a>
+                                            <td th:text="${blogs.ClassificationByClassId.classname}"></td>
 
-                                            <td class="am-hide-sm-only">2014年9月4日 7:28:47</td>
+                                            <td  th:text="${blogs.time}" class="am-hide-sm-only" ></td>
                                             <td>
                                                 <div class="am-btn-toolbar">
                                                     <div class="am-btn-group am-btn-group-xs">
                                                         <button class="am-btn am-btn-default am-btn-xs am-text-secondary"><span class="am-icon-pencil-square-o"></span> 编辑</button>
-                                                        <button class="am-btn am-btn-default am-btn-xs am-text-danger am-hide-sm-only"><span class="am-icon-trash-o"></span> 删除</button>
+                                                        <button class="am-btn am-btn-default am-btn-xs am-text-danger am-hide-sm-only" th:onclick="'deleteblog(\''+${blogs.titleId}+'\')'"><span class="am-icon-trash-o"></span> 删除</button>
                                                     </div>
                                                 </div>
                                             </td>
