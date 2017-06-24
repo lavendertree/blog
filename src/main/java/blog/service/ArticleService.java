@@ -70,9 +70,9 @@ public class ArticleService {
     }
 
     //根据标签获取对应的博文
-    public List<Article> showTagArticle(Integer classID){
+    public List<Article> showTagArticle(Integer classID,Pageable pageable){
        Classification classification= classDao.findOne(classID);
-        List<Article> articleRepositoryList = articleDao.findByClassificationByClassId(classification);
+        List<Article> articleRepositoryList = articleDao.findByClassificationByClassId(classification,pageable);
         return articleRepositoryList;
     }
 

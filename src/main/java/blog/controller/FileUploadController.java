@@ -1,5 +1,6 @@
 package blog.controller;
 
+import blog.service.UserService;
 import org.apache.commons.io.FileUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
@@ -24,6 +25,9 @@ public class FileUploadController {
 
     @Autowired
     private HttpServletRequest request;
+
+    @Autowired
+    UserService userService;
 
     /*
     *@function 上传文件
@@ -66,6 +70,7 @@ public class FileUploadController {
         File uploadDest=new File(filePath);
         String[] fileNames=uploadDest.list();
         model.addAttribute("files",fileNames);
+        model.addAttribute("user",userService.shwoUserInfo("weber"));
         return "/app/file";
     }
 
