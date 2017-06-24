@@ -2,11 +2,9 @@ package blog.controller;
 
 import blog.service.ArticleService;
 import blog.service.TagService;
-import blog.utils.entity.Classification;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.*;
-
-import java.util.List;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RestController;
 
 /**
  * Created by weber on 2017/6/1
@@ -37,21 +35,6 @@ public class BlogController {
         articleService.updateArticle(id,title,description,content,classId);
     }
 
-    @PostMapping("/sendComment")
-    void addComment(Integer titleId,String vistorname,String content){
-        articleService.addComment(titleId,vistorname,content);
-    }
-
-    @PostMapping("/addReply")
-    void  addReply(Integer commentId,String reply){
-        articleService.addReply(commentId,reply);
-    }
-
-    @DeleteMapping("/deleteReply/{replyId}")
-    void deleteReply(@PathVariable("replyId") Integer replyId){
-        articleService.deleteReply(replyId);
-    }
-
     @PostMapping("/admin/addTag.html")
     void addTag(String tagname){
         tagService.addTag(tagname);
@@ -62,9 +45,10 @@ public class BlogController {
         tagService.deleteTag(id);
     }
 
-    @GetMapping("/showTag")
-    List<Classification> showTag(){
-        return  tagService.showTag();
+    @PostMapping("/app/sendComment")
+    void addComment(Integer titleId,String vistorname,String content){
+        articleService.addComment(titleId,vistorname,content);
     }
+
 
 }
