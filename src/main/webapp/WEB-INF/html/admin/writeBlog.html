@@ -27,10 +27,10 @@
 
     <script>
         function newBlog() {
-            var title=$("#title");
-            var content=$(".blog").html();
-            var description=$("#description");
-            var classId=5;
+            var title=$("#title").val();
+            var content=$("#editor").val();
+            var description=$("#description").val();
+            var classId=$("#categorys").val();
             if(title==""||content==""){
                 alert("不能为空");
                 return;
@@ -93,10 +93,8 @@
                                 <div class="am-form-group">
                                     <label for="user-phone" class="am-u-sm-3 am-form-label">分类 <span class="tpl-form-line-small-title">Categories</span></label>
                                     <div class="am-u-sm-9">
-                                        <select data-am-selected="{searchBox: 1}">
-                                          <option value="a">Spring</option>
-                                          <option value="b">夕风色</option>
-                                          <option value="o">Orange</option>
+                                        <select id="categorys" data-am-selected="{searchBox: 1}">
+                                            <option th:each="category:${categorylist}" th:value="${category.classId}" th:text="${category.classname}" ></option>
                                         </select>
                                     </div>
                                 </div>

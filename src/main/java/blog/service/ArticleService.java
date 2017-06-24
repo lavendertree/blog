@@ -66,6 +66,14 @@ public class ArticleService {
 
     }
 
+    //根据关键字搜索博文
+    public List<Article> search(String keyword){
+        if(!keyword.equals(""))
+            return articleDao.findByTitleContaining(keyword);
+        else
+            return articleDao.findAll();
+    }
+
     //根据标签获取对应的博文
     public List<Article> showTagArticle(Integer classID){
        Classification classification= classDao.findOne(classID);
@@ -80,8 +88,8 @@ public class ArticleService {
     }
 
     //根据ID号获取对应博文
-    public Article showOneArticle(Integer titleId){
-        return  articleDao.findOne(titleId);
+    public Article showOneArticle(Integer id){
+        return  articleDao.findOne(id);
     }
 
     //根据博文ID号获取对应的评论

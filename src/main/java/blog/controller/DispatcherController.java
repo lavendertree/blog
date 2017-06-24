@@ -55,6 +55,7 @@ public class DispatcherController {
 
     @GetMapping("/admin/writeBlog")
     String writeBlog(Model model){
+        model.addAttribute("categorylist",tagService.showTag());
         return "/admin/writeBlog";
     }
 
@@ -76,6 +77,21 @@ public class DispatcherController {
         model.addAttribute("page_password",true);
         return "/admin/changePass";
     }
+
+    @GetMapping("/admin/updateBlog/{id}")
+    String updateBlog(@PathVariable("id") Integer id ,Model model){
+        model.addAttribute("blog",articleService.showOneArticle(id));
+        model.addAttribute("categorylist",tagService.showTag());
+        return "/admin/updateBlog";
+    }
+
+    @GetMapping("/admin/search")
+    String search(String keyword,Model model){
+        model.addAttribute("bloglist",articleService.search(keyword));
+        model.addAttribute("categorylist",tagService.showTag());
+        return "/admin/blog-list";
+    }
+
 
     @GetMapping("/me")
     String me(Model model){
