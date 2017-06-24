@@ -76,7 +76,6 @@
                             <div class="am-btn-toolbar">
                                 <div class="am-btn-group am-btn-group-xs">
                                     <button type="button" class="am-btn am-btn-default am-btn-success" ><a th:href="@{/admin/writeBlog}"><span class="am-icon-plus"></span> 新增</a></button>
-                                    <button type="button" class="am-btn am-btn-default am-btn-danger"><span class="am-icon-trash-o"></span> 删除</button>
                                 </div>
                             </div>
                         </div>
@@ -107,7 +106,7 @@
                                 <table class="am-table am-table-striped am-table-hover table-main">
                                     <thead>
                                         <tr>
-                                            <th class="table-check"><input type="checkbox" class="tpl-table-fz-check"></th>
+                                            <th class="table-check"><input type="hidden" class="tpl-table-fz-check"></th>
 
                                             <th class="table-title">标题</th>
                                             <th class="table-type">类别</th>
@@ -118,7 +117,7 @@
                                     </thead>
                                     <tbody >
                                         <tr th:each="blogs:${bloglist}">
-                                            <td><input type="checkbox"></td>
+                                            <td><input type="hidden" ></td>
 
                                             <a href="#"><td th:text="${blogs.title}"></td></a>
                                             <td th:text="${blogs.ClassificationByClassId.classname}"></td>
