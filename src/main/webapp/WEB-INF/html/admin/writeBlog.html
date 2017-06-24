@@ -16,6 +16,7 @@
     <link rel="stylesheet" href="../../../static/admin/css/amazeui.min.css" />
     <link rel="stylesheet" href="../../../static/admin/css/admin.css">
     <link rel="stylesheet" href="../../../static/admin/css/app.css">
+    <link rel="stylesheet" type="text/css" href="../../../static/admin/css/simditor.css" />
     <script type="text/javascript" src="../../../static/admin/js/wangEditor.min.js"></script>
 </head>
 
@@ -121,18 +122,11 @@
                                     </div>
                                 </div>
 
-
                                 <div class="am-form-group">
-                                    <label for="content" class="am-u-sm-3 am-form-label">文章内容</label>
-                                    <div  class="am-u-sm-9 blog" >
-                                        <p>初始化的内容</p>
+                                    <label for="editor" class="am-u-sm-3 am-form-label">文章内容</label>
+                                    <div class="am-u-sm-9">
+                                        <textarea class="" rows="10" id="editor" placeholder="请输入文章内容"></textarea>
                                     </div>
-
-                                    <script type="text/javascript">
-                                        var E = window.wangEditor;
-                                        var editor = new E('.blog');
-                                        editor.create();
-                                    </script>
                                 </div>
 
                                 <div class="am-form-group">
@@ -154,6 +148,17 @@
     <script src="../../../static/admin/js/jquery.min.js"></script>
     <script src="../../../static/admin/js/amazeui.min.js"></script>
     <script src="../../../static/admin/js/app.js"></script>
+    <script type="text/javascript" src="../../../static/admin/js/jquery.min.js"></script>
+    <script type="text/javascript" src="../../../static/admin/js/module.min.js"></script>
+    <script type="text/javascript" src="../../../static/admin/js/hotkeys.min.js"></script>
+    <script type="text/javascript" src="../../../static/admin/js/uploader.min.js"></script>
+    <script type="text/javascript" src="../../../static/admin/js/simditor.min.js"></script>
+    <script>
+        var editor = new Simditor({
+            textarea: $('#editor')
+            //optional options
+        });
+    </script>
 </body>
 
 </html>
