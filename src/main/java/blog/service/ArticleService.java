@@ -99,11 +99,13 @@ public class ArticleService {
     }
 
     //添加一个评论
-    public void addComment(Integer titleId,String vistorname,String content){
+    public void addComment(Integer titleId,String vistorname,String mail,String replyer,String content){
         VistorComment comment=new VistorComment();
         comment.setArticleByTitleId(articleDao.getOne(titleId));
         comment.setVistorName(vistorname);
+        comment.setMail(mail);
         comment.setComment(content);
+        comment.setReplyer(replyer);
         comment.setCommentTime(new Timestamp(System.currentTimeMillis()));
         commentDao.save(comment);
     }

@@ -89,15 +89,14 @@
 					<h4 class="heading">请写下你的评论（回复） <small><a rel="nofollow" id="cancel-comment-reply-link" href="/themes/wp-simpler/archives/34#respond" style="display:none;">Cancel reply</a></small></h4>
 					
 					
-					<form action="single.html" method="post" id="commentform" />
+					<form action="/app/sendComment" method="post" id="commentform" />
 
-                    <input type="hidden" th:value="${blog.titleId}">
+                    <input type="hidden" name="titleId" th:value="${blog.titleId}">
 					
 					<p class="comment-form-author"><label for="vistorname">名字<span class="required">*</span></label> <input id="vistorname" name="vistorname" type="text" value="" size="30" aria-required="true" /></p>
 
-					<!--<p class="comment-form-email"><label for="email">Email<span class="required">*</span></label> <input id="email" name="email" type="text" value="" size="30" aria-required="true" /></p>-->
-	<!--<p class="comment-form-url"><label for="url">Website</label><input id="url" name="url" type="text" value="" size="30" /></p>-->
-					
+					<p class="comment-form-email"><label for="mail">Email<span class="required">*</span></label> <input id="mail" name="mail" type="text" value="" size="30" aria-required="true" /></p>
+
 					<p class="comment-form-comment"><label for="content">评论</label><textarea id="comment" name="content" cols="45" rows="8" aria-required="true"></textarea></p>
 
 					
