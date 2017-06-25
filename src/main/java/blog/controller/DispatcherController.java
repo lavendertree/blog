@@ -13,6 +13,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 /**
@@ -121,9 +122,9 @@ public class DispatcherController {
     }
 
     @GetMapping("/app/blog.html")
-    String blogList(Model model){
-        Sort sort=new Sort(Sort.Direction.DESC,"time");
-        Pageable pageable=new PageRequest(0,4,sort);
+    String blogList(Pageable pageable,Model model){
+//        Sort sort=new Sort(Sort.Direction.DESC,"time");
+//        Pageable pageable=new PageRequest(0,4,sort);
         model.addAttribute("bloglist",articleService.showAllArticle(pageable));
         model.addAttribute("user",userService.shwoUserInfo("weber"));
         model.addAttribute("categories",tagService.showTag());
@@ -146,6 +147,23 @@ public class DispatcherController {
     @GetMapping("/app/contact.html")
     String contact(){
         return "app/contact";
+    }
+
+    @PostMapping("/app/sendComment")
+    String addComment(Integer titleId,String vistorname,String mail,String content){
+        String master="";
+        String slave="";
+        if(AuthorityTool.isAuthenticated())
+        {
+             master="博主";
+             slave=vistorname;
+        }
+        else{
+             master=vistorname;
+             slave="博主";
+        }
+        articleService.addComment(titleId,master,mail,slave,content);
+        return "redirect:/app/single/"+titleId;
     }
 
 }

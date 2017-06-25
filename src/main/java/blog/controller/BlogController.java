@@ -45,10 +45,7 @@ public class BlogController {
         tagService.deleteTag(id);
     }
 
-    @PostMapping("/app/sendComment")
-    void addComment(Integer titleId,String vistorname,String content){
-        articleService.addComment(titleId,vistorname,content);
-    }
+
 
 
 }
