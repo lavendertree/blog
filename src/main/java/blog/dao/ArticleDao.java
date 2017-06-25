@@ -15,7 +15,7 @@ import java.util.List;
 public interface ArticleDao extends JpaRepository<Article,Integer> {
 
    //根据类别展示相应博客
-     List<Article> findByClassificationByClassId(Classification classification);
+     List<Article> findByClassificationByClassId(Classification classification,Pageable pageable);
 
     //展示最新的博文
     @Query( "select article from Article article  order by article.time desc")

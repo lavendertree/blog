@@ -1,5 +1,6 @@
 package blog.controller;
 
+import blog.service.UserService;
 import org.apache.commons.io.FileUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
@@ -8,10 +9,7 @@ import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
 import javax.servlet.http.HttpServletRequest;
@@ -27,6 +25,9 @@ public class FileUploadController {
 
     @Autowired
     private HttpServletRequest request;
+
+    @Autowired
+    UserService userService;
 
     /*
     *@function 上传文件
@@ -60,12 +61,27 @@ public class FileUploadController {
     }
 
     /*
+  *@function 读取所有的文件并返回
+  * return
+   */
+    @GetMapping(value = "/app/file.html")
+    public String fileList(Model model){
+        String filePath=request.getSession().getServletContext().getRealPath("/")+"static/upload/";
+        File uploadDest=new File(filePath);
+        String[] fileNames=uploadDest.list();
+        model.addAttribute("files",fileNames);
+        model.addAttribute("user",userService.shwoUserInfo("weber"));
+        return "/app/file";
+    }
+
+    /*
   *@function 根据文件名进行下载
   * @param filename
   * return
    */
-    @RequestMapping(value = "/download")
-    public ResponseEntity<byte[]> download(String filename)throws IOException {
+    @RequestMapping(value = "/app/download/{filename}")
+    public ResponseEntity<byte[]> download(@PathVariable("filename") String filename)throws IOException {
+        filename=filename+".doc";
         String path=request.getSession().getServletContext().getRealPath("/")+"static/upload/";
         File file=new File(path,filename);
         HttpHeaders headers=new HttpHeaders();

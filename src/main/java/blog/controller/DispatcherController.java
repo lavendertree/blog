@@ -104,6 +104,7 @@ public class DispatcherController {
     @GetMapping(value={"/app/index.html","/"})
     String me(Model model){
         model.addAttribute("latestblog",articleService.showRecentArticle());
+        model.addAttribute("user",userService.shwoUserInfo("weber"));
         return "app/index";
     }
 
@@ -113,13 +114,32 @@ public class DispatcherController {
         Article article=articleService.showOneArticle(titleId);
         model.addAttribute("blog",article);
         model.addAttribute("comment",articleService.showComment(titleId));
+        model.addAttribute("user",userService.shwoUserInfo("weber"));
+        model.addAttribute("categories",tagService.showTag());
+        model.addAttribute("Blogs",articleService.showRecentArticle());
         return "app/single";
     }
 
     @GetMapping("/app/blog.html")
     String blogList(Model model){
-        Pageable pageable=new PageRequest(0,4,new Sort(Sort.Direction.DESC,"time"));
+        Sort sort=new Sort(Sort.Direction.DESC,"time");
+        Pageable pageable=new PageRequest(0,4,sort);
         model.addAttribute("bloglist",articleService.showAllArticle(pageable));
+        model.addAttribute("user",userService.shwoUserInfo("weber"));
+        model.addAttribute("categories",tagService.showTag());
+        model.addAttribute("Blogs",articleService.showRecentArticle());
+        model.addAttribute(pageable.getPageNumber());
+        return "app/blog";
+    }
+
+    @GetMapping("/app/category/{id}")
+    String cblogList(@PathVariable Integer id, Model model){
+        Sort sort=new Sort(Sort.Direction.DESC,"time");
+        Pageable pageable=new PageRequest(0,4,sort);
+        model.addAttribute("bloglist",articleService.showTagArticle(id,pageable));
+        model.addAttribute("user",userService.shwoUserInfo("weber"));
+        model.addAttribute("categories",tagService.showTag());
+        model.addAttribute("Blogs",articleService.showRecentArticle());
         return "app/blog";
     }
 
