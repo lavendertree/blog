@@ -11,10 +11,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 
 /**
  * Created by weber on 2017/6/3.
@@ -132,13 +129,13 @@ public class DispatcherController {
     }
 
     @GetMapping("/app/category/{id}")
-    String cblogList(@PathVariable Integer id, Model model){
-        Sort sort=new Sort(Sort.Direction.DESC,"time");
-        Pageable pageable=new PageRequest(0,4,sort);
+    String cblogList( @PathVariable Integer id, Model model){
+        Pageable pageable=new PageRequest(0,5,new Sort(Sort.Direction.DESC,"time"));
         model.addAttribute("bloglist",articleService.showTagArticle(id,pageable));
         model.addAttribute("user",userService.shwoUserInfo("weber"));
         model.addAttribute("categories",tagService.showTag());
         model.addAttribute("Blogs",articleService.showRecentArticle());
+        model.addAttribute("page",pageable.getPageNumber());
         return "app/blog";
     }
 
