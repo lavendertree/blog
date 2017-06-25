@@ -20,6 +20,7 @@ public class Article {
     private String articleContent;
     private Classification classificationByClassId;
     private Collection<VistorComment> vistorCommentsByTitleId;
+    private String photosrc;
 
     @Id
     @GeneratedValue
@@ -70,6 +71,15 @@ public class Article {
 
     public void setArticleContent(String articleContent) {
         this.articleContent = articleContent;
+    }
+
+    @Column(name = "photo_src")
+    public String getPhotosrc() {
+        return photosrc;
+    }
+
+    public void setPhotosrc(String photosrc) {
+        this.photosrc = photosrc;
     }
 
 

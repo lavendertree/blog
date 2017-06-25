@@ -123,13 +123,11 @@ public class DispatcherController {
 
     @GetMapping("/app/blog.html")
     String blogList(Pageable pageable,Model model){
-//        Sort sort=new Sort(Sort.Direction.DESC,"time");
-//        Pageable pageable=new PageRequest(0,4,sort);
         model.addAttribute("bloglist",articleService.showAllArticle(pageable));
         model.addAttribute("user",userService.shwoUserInfo("weber"));
         model.addAttribute("categories",tagService.showTag());
         model.addAttribute("Blogs",articleService.showRecentArticle());
-        model.addAttribute(pageable.getPageNumber());
+        model.addAttribute("page",pageable.getPageNumber());
         return "app/blog";
     }
 

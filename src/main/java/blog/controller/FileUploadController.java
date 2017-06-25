@@ -1,5 +1,6 @@
 package blog.controller;
 
+import blog.service.FileService;
 import blog.service.UserService;
 import org.apache.commons.io.FileUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -29,6 +30,9 @@ public class FileUploadController {
     @Autowired
     UserService userService;
 
+    @Autowired
+    FileService fileService;
+
     /*
     *@function 上传文件
     * return
@@ -41,6 +45,11 @@ public class FileUploadController {
             //前半部分路径，目录，将WebRoot下一个名称为upload文件夹转为绝对路径
             String leftPath=request.getSession().getServletContext().getRealPath("/static/upload");
             //转存,进行路径拼接=前半部分路径+文件名
+
+            String src=leftPath+filename;
+
+            fileService.saveFile(filename,src);
+
             uploadFile.transferTo(new File(leftPath,filename));
         }
       return "redirect:/admin/file.html";
@@ -53,10 +62,7 @@ public class FileUploadController {
      */
     @GetMapping(value = "/admin/file.html")
     public String list(Model model){
-        String filePath=request.getSession().getServletContext().getRealPath("/")+"static/upload/";
-        File uploadDest=new File(filePath);
-        String[] fileNames=uploadDest.list();
-        model.addAttribute("files",fileNames);
+        model.addAttribute("files",fileService.fileList());
         return "/admin/file";
     }
 
@@ -66,10 +72,7 @@ public class FileUploadController {
    */
     @GetMapping(value = "/app/file.html")
     public String fileList(Model model){
-        String filePath=request.getSession().getServletContext().getRealPath("/")+"static/upload/";
-        File uploadDest=new File(filePath);
-        String[] fileNames=uploadDest.list();
-        model.addAttribute("files",fileNames);
+        model.addAttribute("files",fileService.fileList());
         model.addAttribute("user",userService.shwoUserInfo("weber"));
         return "/app/file";
     }
@@ -98,7 +101,9 @@ public class FileUploadController {
         boolean flag=false;
         String path=request.getSession().getServletContext().getRealPath("/")+"static/upload/";
         File file=new File(path,filename);
+
         if (file.isFile()&&file.exists()){
+            fileService.deleteFile(filename);
             file.delete();
         }
         return "redirect:/admin/file";

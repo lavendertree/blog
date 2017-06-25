@@ -99,14 +99,14 @@
                                 <tbody>
                                 <tr th:each="file:${files}">
                                     <td><input type="hidden"></td>
-                                    <td th:text="${file}"><a href="#" ></a></td>
+                                    <td th:text="${file.filename}"><a href="#" ></a></td>
 
                                     <td class="am-hide-sm-only"></td>
                                     <td class="am-hide-sm-only"></td>
                                     <td>
                                         <div class="am-btn-toolbar">
                                             <div class="am-btn-group am-btn-group-xs">
-                                                <button class="am-btn am-btn-default am-btn-xs am-text-danger am-hide-sm-only" th:onclick="'deleteFile(\''+${file}+'\')'"><span class="am-icon-trash-o"></span> 删除</button>
+                                                <button class="am-btn am-btn-default am-btn-xs am-text-danger am-hide-sm-only" th:onclick="'deleteFile(\''+${file.filename}+'\')'"><span class="am-icon-trash-o"></span> 删除</button>
                                             </div>
                                         </div>
                                     </td>

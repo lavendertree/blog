@@ -47,7 +47,7 @@
             <!-- Infos -->
             <h2 class="heading">文件 下载</h2>
             <div th:each="file:${files}">
-            <a th:href="'/app/download/'+${file}"><p class="infobox-download">[[${file}]]</p></a>
+            <a th:href="'/app/download/'+${file.filename}"><p class="infobox-download">[[${file.filename}]]</p></a>
             </div>
             <!-- ENDS Infos -->
 

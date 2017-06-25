@@ -60,9 +60,16 @@
 
 				<!-- page-navigation -->
 				<div class="page-navigation cf">
-					<!--<div class="nav-next" ><a th:href="@{'/app/blog?size=5&page='+${page-1}+'&sort=publishTime,desc'}">Older</a></div>-->
-					<!--<div class="nav-previous" ><a th:href="@{'/app/blog?size=5&page='+${page+1}+'&sort=time,desc'}">Newer</a></div>-->
-				</div>
+					<div class="nav-next" th:classappend="${page}==0?'disabled'"><a th:href="@{'/app/blog.html?size=5&page='+${page-1}+'&sort=time,desc'}">Older</a></div>
+					<div class="nav-previous" th:classappend="not ${bloglist.hasNext()}?'disabled'"><a th:href="@{'/app/blog.html?size=5&page='+${page+1}+'&sort=time,desc'}">Newer</a></div>
+                    <!--<nav aria-label="...">-->
+                        <!--<ul class="pager">-->
+                            <!--<li class="previous" ><a th:href="@{'/app/blog.html?size=5&page='+${page-1}+'&sort=time,desc'}"><span aria-hidden="true">&larr;</span> Before</a></li>-->
+                            <!--<li class="next" ><a th:href="@{'/app/blog.html?size=5&page='+${page+1}+'&sort=time,desc'}">Next <span aria-hidden="true">&rarr;</span></a></li>-->
+                        <!--</ul>-->
+                    <!--</nav>-->
+
+                </div>
 				<!--ENDS page-navigation -->
 
 					

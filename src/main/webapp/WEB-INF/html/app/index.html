@@ -111,7 +111,7 @@
 
 				<li th:each="blog:${latestblog}">
 					<a class="thumb" th:href="'/app/single/'+${blog.titleId}" >
-						<img src="../../../static/app/img/dummies/t2.jpg" alt="Thumbnail" />
+						<img th:src="@{${blog.photosrc}}" alt="Thumbnail" />
 						<div class="img-overlay">READ MORE</div>
 					</a>
 
