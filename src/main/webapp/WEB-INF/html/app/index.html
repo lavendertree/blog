@@ -60,14 +60,14 @@
 
 					<!-- left nav -->
 					<ul id="left-nav" class="sf-menu">
-						<li><a th:href="@{/app/blog.html?size=5&sort=time,desc}">BLOG</a></li>
-						<li class="current-menu-item"><a th:href="@{/app/index.html}">HOME</a></li>
+						<li style="right: 56px;"><a th:href="@{/app/blog.html}">BLOG</a></li>
+						<li class="current-menu-item" style="right: 116px;"><a th:href="@{/app/index.html}">HOME</a></li>
 					</ul>
 					<!-- ends left nav -->
 
 					<!-- right nav -->
 					<ul id="right-nav" class="sf-menu">
-						<li><a th:href="@{/app/file.html}">FILE</a></li>
+						<li style="left: 79px;"><a th:href="@{/app/file.html}">FILE</a></li>
 					</ul>
 					<!-- ENDS right nav -->
 
@@ -114,8 +114,6 @@
 						<img th:src="@{${blog.photosrc}}" alt="Thumbnail" />
 						<div class="img-overlay">READ MORE</div>
 					</a>
-
-
                     <a th:href="'/app/single/'+${blog.titleId}" class="title">[[${blog.title}]]</a>
 					<div class="categories"><a href="#">[[${blog.classificationByClassId.classname}]]</a></div>
 					<div class="excerpt">[[${blog.description}]]</div>
@@ -219,6 +217,5 @@
 			<script src="../../../static/app/js/custom.js"></script>
 			<!-- ENDS javascripts -->
 		</div>
-	
 	</body>
 </html>
