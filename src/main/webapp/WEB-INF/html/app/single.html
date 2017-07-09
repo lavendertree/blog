@@ -5,7 +5,7 @@
 <!--[if gt IE 8]><!--> <html class="no-js" xmlns:th="http://www.thymeleaf.org"> <!--<![endif]-->
 	<head>
 		<meta charset="utf-8" />
-		<title>Fox Template</title>
+		<title>博客之家</title>
 		<meta name="description" content="" />
 		<meta name="viewport" content="width=device-width" />
 		
@@ -43,13 +43,12 @@
 			
 				<article class="cf">
 					<div class="feature-image">
-						<a href="single.html"><img src="../../../static/app/img/dummies/672x400a.jpg" alt="Thumbnail" /></a>
+						<a href="#"><img th:src="@{${blog.photosrc}}" alt="Thumbnail" /></a>
 					</div>
 					<div class="entry-title">
-						<a href="single.html" class="post-heading">[[${blog.title}]]</a>
+						<a href="#" class="post-heading">[[${blog.title}]]</a>
 						<br>
 						<div class="entry-date">[[${blog.time}]]</div>
-						<a href="single.html#comments" class="comments">161</a>
 					</div>
 					<div class="excerpt entry-content" id="content">
                         <p th:utext="${blog.articleContent}"></p>

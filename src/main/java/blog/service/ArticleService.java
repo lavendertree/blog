@@ -30,7 +30,7 @@ public class ArticleService {
 
     //添加一篇博文
     public void saveArticle(String title,String desctiption ,String text,Integer classID){
-        String src="/static/app/img/dummies/t"+(int)(Math.random()*5)+".jpg";
+        String src="/static/app/img/dummies/t"+(int)(Math.random()*4+1)+".jpg";
         Article article=new Article();
         article.setTitle(title);
         article.setDescription(desctiption);
