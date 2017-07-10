@@ -13,6 +13,7 @@ import java.io.IOException;
 /**
  * Created by weber on 2017/5/28.
  */
+
 public class AjaxLoginFailureHandler implements AuthenticationFailureHandler {
 
     @Override
